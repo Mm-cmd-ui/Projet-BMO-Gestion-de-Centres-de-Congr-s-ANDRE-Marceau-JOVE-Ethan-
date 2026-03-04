@@ -1,1 +1,12 @@
+@startuml
+skinparam style strictuml
+title SSD - Entrée et Sélection du Centre
 
+actor "Gestionnaire" as G
+participant "Application Web" as A
+
+G -> A : Consulter l'application
+A --> G : Afficher la liste des centres de congrès
+G -> A : Sélectionner un centre spécifique (ex: Centre Rennes)
+A --> G : Afficher le tableau de bord et les éléments (Amphis, salles)
+@enduml
