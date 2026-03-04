@@ -1,1 +1,15 @@
+@startuml
+skinparam style strictuml
+title SSD Exceptionnel - Écart de prix au paiement
 
+actor "Gestionnaire" as G
+participant "Application Web" as A
+
+G -> A : Accéder à la page de paiement
+A -> A : Re-calculer le coût final (Saison + Options)
+alt Coût calculé != Coût affiché initialement
+    A --> G : Alerte : "Mise à jour des tarifs détectée"
+    A --> G : Afficher le nouveau montant et demander re-validation
+    note right : Peut arriver si la saison a changé \nentre la mise au panier et le paiement.
+end
+@enduml
