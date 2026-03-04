@@ -1,1 +1,14 @@
+@startuml
+skinparam style strictuml
+title SSD Exceptionnel - Pas de disponibilité
 
+actor "Gestionnaire" as G
+participant "Application Web" as A
+
+G -> A : Sélectionner une période de réservation
+A -> A : Vérifier calendrier des réservations
+alt Toutes les salles occupées
+    A --> G : Afficher planning complet (Statut : Indisponible)
+    A --> G : Message "Aucun élément libre pour ces dates"
+end
+@enduml
