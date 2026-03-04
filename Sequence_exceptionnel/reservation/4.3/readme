@@ -1,1 +1,14 @@
+@startuml
+skinparam style strictuml
+title SSD Exceptionnel - Modif/Annulation impossible
 
+actor "Gestionnaire" as G
+participant "Application Web" as A
+
+G -> A : Tenter de modifier ou annuler une réservation
+A -> A : Comparer Date du jour et Date de début de l'événement
+alt Date de l'événement déjà passée ou en cours
+    A --> G : Message d'erreur : "Action impossible : l'événement a déjà commencé"
+    note right : Les données sont verrouillées pour \ngarantir l'intégrité des statistiques.
+end
+@enduml
