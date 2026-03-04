@@ -1,1 +1,15 @@
 
+@startuml
+skinparam style strictuml
+title SSD - Confirmation, Paiement et Modifications
+
+actor "Gestionnaire" as G
+participant "Application Web" as A
+
+G -> A : Demander la confirmation de la réservation
+A --> G : Afficher le module de paiement
+G -> A : Enregistrer le paiement (effectué hors-système)
+A -> A : Passer le statut à "Confirmé"
+A --> G : Envoyer confirmation au référent par e-mail
+note over G, A : Modification ou annulation possible jusqu'au début de l'événement
+@enduml
