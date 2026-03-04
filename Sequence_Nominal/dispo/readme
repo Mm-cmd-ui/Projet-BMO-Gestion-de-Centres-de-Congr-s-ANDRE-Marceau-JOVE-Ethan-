@@ -1,1 +1,14 @@
+@startuml
 
+skinparam style strictuml
+title SSD - Disponibilités, Tarifs et Contraintes
+
+actor "Gestionnaire" as G
+participant "Application Web" as A
+
+G -> A : Rechercher disponibilités pour une période
+A --> G : Afficher planning et tarifs (Haute/Moyenne/Basse saison)
+G -> A : Sélectionner une période et un élément (ex: Salle A)
+A -> A : Vérifier contraintes (durée min, jours interdits)
+
+@enduml
