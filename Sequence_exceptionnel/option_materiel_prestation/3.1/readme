@@ -1,1 +1,17 @@
+@startuml
+skinparam style strictuml
+title SSD Exceptionnel - Matériel/Prestations (Aucune option)
 
+actor "Gestionnaire" as G
+participant "Application Web" as A
+
+G -> A : Consulter la liste du matériel et des prestations
+A -> A : Rechercher les options liées au centre choisi
+
+alt Liste vide / Erreur de configuration
+    A --> G : Message : "Aucune option (matériel/prestation) disponible"
+    A --> G : Proposer d'ajouter du matériel dans la configuration
+else Erreur de chargement
+    A --> G : Message : "Impossible de charger les prestations actuellement"
+end
+@enduml
