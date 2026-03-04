@@ -1,1 +1,17 @@
+@startuml
+skinparam style strictuml
+title SSD Exceptionnel - Entrée (Pas d'affichage dans l'app)
 
+actor "Gestionnaire" as G
+participant "Application Web" as A
+
+G -> A : Lancer la recherche d'un centre de congrès
+A -> A : Requête vers la base de données
+
+alt Aucun résultat trouvé
+    A --> G : Page vide / "Aucun centre de congrès enregistré"
+else Erreur d'affichage (Crash Front/Back)
+    A --> G : Page d'erreur 404 ou 500
+    A --> G : Message : "L'affichage a échoué, veuillez rafraîchir la page"
+end
+@enduml
