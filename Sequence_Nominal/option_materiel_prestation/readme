@@ -1,1 +1,13 @@
+@startuml
+skinparam style strictuml
+title SSD - Services et Informations Événement
 
+actor "Gestionnaire" as G
+participant "Application Web" as A
+
+G -> A : Sélectionner matériel (micro, etc.) et prestations (café, sécu)
+A -> A : Calculer coût total (durée + options)
+A --> G : Afficher récapitulatif financier
+G -> A : Saisir infos événement (Nom, Description, Nb participants, Email référent)
+A --> G : Valider le dossier de réservation (Statut: En attente)
+@enduml
