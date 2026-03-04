@@ -1,1 +1,14 @@
+@startuml
+skinparam style strictuml
+title SSD Exceptionnel - Indisponibilité (Travaux)
 
+actor "Gestionnaire" as G
+participant "Application Web" as A
+
+G -> A : Consulter un élément spécifique (ex: Amphi)
+A -> A : Vérifier calendrier de maintenance
+alt Période de travaux détectée
+    A --> G : Afficher alerte : "Indisponible pour travaux / maintenance"
+    A --> G : Bloquer toute tentative de réservation
+end
+@enduml
