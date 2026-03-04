@@ -1,1 +1,17 @@
+@startuml
+skinparam style strictuml
+title SSD Exceptionnel - Capacité trop petite
 
+actor "Gestionnaire" as G
+participant "Application Web" as A
+
+G -> A : Saisir le nombre de participants pour l'événement
+G -> A : Sélectionner l'élément (ex: Salle de conférence B)
+A -> A : Comparer NbParticipants avec capaciteMax de l'élément
+
+alt NbParticipants > capaciteMax
+    A --> G : Message d'erreur : "Capacité insuffisante (Max: 100 personnes)"
+    A --> G : Bloquer la validation de la réservation
+    note right : Le gestionnaire doit soit réduire le nombre \nde participants, soit choisir un autre lieu.
+end
+@enduml
