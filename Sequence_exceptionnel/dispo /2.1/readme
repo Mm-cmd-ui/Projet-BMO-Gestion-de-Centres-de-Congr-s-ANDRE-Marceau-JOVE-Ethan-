@@ -1,1 +1,14 @@
+@startuml
+skinparam style strictuml
+title SSD Exceptionnel - Problème d'affichage
 
+actor "Gestionnaire" as G
+participant "Application Web" as A
+
+G -> A : Lancer la recherche de disponibilités
+A -> A : Requête base de données
+alt Erreur de chargement / Bug Front-end
+    A --> G : Page blanche ou message "Aucune donnée disponible"
+    note right : Le système n'arrive pas à \nrestituer les créneaux existants.
+end
+@enduml
