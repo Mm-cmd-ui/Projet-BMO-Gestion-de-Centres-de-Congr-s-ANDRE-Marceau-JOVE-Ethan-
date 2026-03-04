@@ -1,1 +1,15 @@
+@startuml
+skinparam style strictuml
+title SSD Exceptionnel - Échec de redirection paiement
 
+actor "Gestionnaire" as G
+participant "Application Web" as A
+
+G -> A : Valider le dossier de réservation
+A -> A : Préparer la transaction
+alt Erreur de serveur / Lien mort
+    A --> G : Message d'erreur : "Service de paiement indisponible"
+    A --> G : Maintenir la réservation au statut "En attente"
+    note right : Le gestionnaire reste sur la page \ndu récapitulatif.
+end
+@enduml
