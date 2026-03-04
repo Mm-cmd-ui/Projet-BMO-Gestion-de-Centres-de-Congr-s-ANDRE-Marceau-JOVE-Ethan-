@@ -1,1 +1,15 @@
+@startuml
+skinparam style strictuml
+title SSD Exceptionnel - Annulation (Délai dépassé)
 
+actor "Gestionnaire" as G
+participant "Application Web" as A
+
+G -> A : Consulter une réservation "En attente"
+A -> A : Vérifier date de création et délai de confirmation
+alt Délai de confirmation expiré
+    A -> A : Changer statut en "Annulée"
+    A --> G : Message : "Réservation annulée : paiement non reçu à temps"
+    note right : La réservation est libérée \npour d'autres clients.
+end
+@enduml
