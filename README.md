@@ -8,6 +8,13 @@ Accès Rapide
 *[diagramme de classe](./diagramme-de-classe/)
 -Diagramme d'état : Cycle de vie d'une réservation.
 *[diagramme etat](./diagramme-etat/)
+-Cas utilisation : Panorama des fonctionnalités offertes au Gestionnaire (Configuration, Réservation, Statistiques).
+*[cas utilisation](./Cas_Utilisation/)
+-Sequence nominal : Chemin idéal d'une réservation sans conflit, incluant la vérification de capacité et le calcul automatique du tarif.
+*[sequence nominal](./Sequence_Nominal/)
+-Sequence exceptionnel : Gestion des erreurs métier comme le dépassement de capacité d'un amphi ou l'indisponibilité du matériel (vidéoprojecteurs, micros).
+*[sequence exceptionnel](./Sequence_exceptionnel/)
+
 
 
 => Guide d'Utilisation (TD)
