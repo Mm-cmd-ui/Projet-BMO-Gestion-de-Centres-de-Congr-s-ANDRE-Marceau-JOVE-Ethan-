@@ -1,41 +1,53 @@
-Analyse du Cycle de Vie de la Réservation
 
-Le diagramme d'états de la classe Réservation modélise les règles métier strictes définies dans le cahier des charges de l'ISTIC. Voici le guide de lecture de ce cycle de vie :
+Ce projet utilise un diagramme d'états-transitions pour piloter le cycle de vie d'une réservation. Voici le détail du fonctionnement.
 
-1. Initialisation : EnAttentePaiement
+=> script UML
+(Vous pouvez visualiser ce diagramme en copiant le code ci-dessous sur PlantUML)
 
-Dès qu'une réservation est créée, elle entre dans l'état EnAttentePaiement.
+@startuml
+title Diagramme d'états - Classe Réservation
 
-Règle métier : Conformément au sujet, un compte à rebours est lancé. Ce délai est configurable pour chaque réservation.
+[*] --> EnAttentePaiement : Création réservation
 
-Issue A (Succès) : Si l'action [Paiement valide] survient, la réservation passe à l'état Confirmee.
+state EnAttentePaiement {
+  EnAttentePaiement : entry / Démarrer compte à rebours
+}
+note right of EnAttentePaiement : Le délai est configurable.
 
-Issue B (Échec) : Si le [Délai dépassé] survient, le système déclenche une Annulation automatique.
+EnAttentePaiement --> Confirmee : [Paiement valide] / enregistrer confirmation
+EnAttentePaiement --> Annulee : [Délai dépassé] / annulation automatique
 
-2. État Stable : Confirmee
+Confirmee --> Modifiee : [Action gestionnaire] / éditer détails
+Confirmee --> Annulee : [Action gestionnaire ou client] / annuler
+Confirmee --> Terminee : [Événement commencé]
 
-Une fois le paiement enregistré, la réservation est officiellement verrouillée.
+Modifiee --> Confirmee : Valider modifications
+Modifiee --> Annulee : Annuler réservation
+note bottom of Modifiee : Possible tant que l'événement n'a pas commencé.
 
-Dans cet état, les ressources (Amphis, matériels) sont garanties pour l'événement.
+Annulee --> [*]
+Terminee --> [*]
+@enduml 
 
-3. Flexibilité : Modifiee
+=> Explications
 
-Le cahier des charges précise qu'une réservation peut être modifiée tant que l'événement n'a pas commencé.
+-Initialisation : EnAttentePaiement
 
-L'action du gestionnaire [éditer détails] fait basculer la réservation vers l'état Modifiee.
+Dès qu'une réservation est créée, elle entre dans cet état 
 
-Une fois les modifications validées, elle retourne à l'état Confirmee.
+.Action automatique : Un compte à rebours est lancé (délai configurable).
+.Issues possibles : * Si le paiement est validé, la réservation passe à Confirmée.
+.Si le temps s'écoule sans paiement, elle passe automatiquement à Annulée.
 
-4. Annulation et Fin de vie
+-État Actif : Confirmée & Modifiée
 
-Droit à l'oubli : Une annulation est possible depuis les états En attente, Confirmée ou Modifiée, à condition que l'événement n'ait pas débuté.
+Une fois payée, la réservation est considérée comme valide 
 
-Terminee : Une fois que l'événement a eu lieu (Événement commencé), la réservation passe à l'état Terminee. Elle ne peut plus être modifiée et sert désormais de base pour la génération des Statistiques (Chiffre d'affaires, taux d'occupation).
+.Modification : Un gestionnaire peut éditer les détails (passage à l'état Modifiée). Une fois les changements validés, elle redevient Confirmée.
+.Annulation : Le client ou le gestionnaire peut décider d'annuler la réservation à ce stade.
+.Contrainte : Ces actions ne sont possibles que tant que l'événement n'a pas commencé.
 
-Implémentation technique (Pattern State)
+-Terminaison : Terminee ou Annulee 
 
-Dans notre projet BESSER, cette logique est conçue pour être implémentée via le Pattern State :
-
-Chaque état est une sous-classe ou une valeur d'énumération qui restreint les actions possibles (par exemple, on ne peut pas "confirmer le paiement" d'une réservation déjà "Annulée").
-
-Les transitions garantissent que le centre de congrès ne perd jamais la trace d'un paiement ou d'un créneau horaire.
+.Terminée : La réservation passe dans cet état final dès que l'événement débute.
+.Annulée : État final si le paiement échoue ou si une annulation manuelle intervient.
