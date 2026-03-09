@@ -15,7 +15,7 @@ Réservation :
 [reservation](/.reservation/)
 
 Matériels et Prestations : 
-[materiel/prestation](/.materiel_prestation/)
+[materiel/prestation](/.option_materiel_prestation/)
 
 Entrée dans l'Application Web
 
