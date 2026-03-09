@@ -6,27 +6,40 @@ Accès rapide :
 
 Entree app :
 [entree app](./Entree_app/)
-[entree app](./Entree_app/1.1/)
-[entree app](./Entree_app/1.2/)
+
+1 - [entree app](./Entree_app/1.1/)
+
+2- [entree app](./Entree_app/1.2/)
 
 
 Dispo :
 [dispo](./dispo/)
-[dispo](./dispo/2.1/)
-[dispo](./dispo/2.2/)
-[dispo](./dispo/2.3/)
+
+1- [dispo](./dispo/2.1/)
+
+2- [dispo](./dispo/2.2/)
+
+3- [dispo](./dispo/2.3/)
+
 
 materiels/prestation : 
 [materiel/prestation](./option_materiel_prestation/)
-[materiel/prestation](./option_materiel_prestation/3.1/)
-[materiel/prestation](./option_materiel_prestation/3.2/)
+
+1 - [materiel/prestation](./option_materiel_prestation/3.1/)
+
+2 - [materiel/prestation](./option_materiel_prestation/3.2/)
+
 
 reservation : 
 [reservation](./reservation/)
-[reservation](./reservation/4.1/)
-[reservation](./reservation/4.2/)
-[reservation](./reservation/4.3/)
-[reservation](./reservation/4.4/)
+
+1 - [reservation](./reservation/4.1/)
+
+2- [reservation](./reservation/4.2/)
+
+3 - [reservation](./reservation/4.3/)
+
+4 - [reservation](./reservation/4.4/)
 
 Étape 1 : Conflit de Disponibilité (Double Réservation)
 
