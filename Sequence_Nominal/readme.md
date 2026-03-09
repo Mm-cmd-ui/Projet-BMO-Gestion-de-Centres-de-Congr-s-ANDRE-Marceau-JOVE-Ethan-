@@ -6,16 +6,16 @@ Ce dossier contient la modélisation dynamique des interactions au sein de l'app
 Accès Rapide : 
 
 Entrée dans l'Application Web : 
-[entree app](/.Entree_app/)
+[entree app](./Entree_app/)
 
 Disponibilités : 
-[dispo](/.dispo/)
+[dispo](./dispo/)
 
 Réservation : 
-[reservation](/.reservation/)
+[reservation](./reservation/)
 
 Matériels et Prestations : 
-[materiel/prestation](/.option_materiel_prestation/)
+[materiel/prestation](./option_materiel_prestation/)
 
 Entrée dans l'Application Web
 
