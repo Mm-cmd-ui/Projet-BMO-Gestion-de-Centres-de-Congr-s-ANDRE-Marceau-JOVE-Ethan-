@@ -3,4 +3,4 @@ Objectifs : Appliquer une approche complète de modélisation en mode projet, pa
 Voici les liens directs pour accéder aux différentes parties du projet :
 
 *[diagramme de classe](./diagramme-de-classe/)
-
+*[diagramme etat](./diagramme-etat/)
