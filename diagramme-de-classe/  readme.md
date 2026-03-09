@@ -4,47 +4,26 @@ Voici les codes python générer par BESSER (cpature d'ecran) :
 
 -prise en main (json + capture ecran)
 
-Documentation du Modèle de Classes et Logique Objet
+=> Ojectif
 
-Ce dossier présente la conception structurelle du système de gestion des centres de congrès. Le modèle a été conçu pour traduire fidèlement le cahier des charges de l'ISTIC tout en assurant une génération de code Python cohérente via BESSER.
+L'application devra permettre de configurer chaque centre de congrès, de gérer les réservations, ainsi que les disponibilités et des tarifs
 
-Justification des Choix de Multiplicités
+=> Justification des multiplicités
 
-Chaque relation dans le diagramme a été définie pour respecter les contraintes métier du sujet de TD.
+Gestionnaire (1) ── (0..1) Centre de Congrès : Un centre possède un gestionnaire unique responsable de sa configuration, garantissant une administration centralisée et sans conflit de droits.
 
- Organisation des Centres
+Gestionnaire (0..1) ── (0..*) Stats : Un gestionnaire peut générer plusieurs rapports statistiques pour piloter l'activité ; chaque rapport reste lié à son auteur pour la traçabilité.
 
-CentredeCongres (0..1) ── (0..*) EvenementSalle : Un centre est composé de plusieurs éléments (Amphis, Salles). La multiplicité 0..* permet de créer un centre puis d'y ajouter des ressources progressivement.
+Gestionnaire (0..*) ── (0..1) Réservation : Un gestionnaire peut superviser de nombreux dossiers. Le 0..1 côté Réservation permet la création de dossiers en autonomie par le système avant affectation à un responsable.
 
-Gestionnaire (1..*) ── (0..1) CentredeCongres : Le sujet mentionne qu'un gestionnaire configure "son" centre. Nous avons autorisé plusieurs gestionnaires pour simuler une équipe d'administration.
+Réservation (1) ── (0..*) Disponibilité : Une réservation occupe une unité de temps et d'espace spécifique (une plage horaire/salle). Cette multiplicité simplifie la détection automatique des chevauchements (overbooking).
 
-Gestion des Réservations
+Centre de Congrès (0..1) ── (0..*) Événement/Salle : Permet de définir la structure du centre (racine) avant d'y ajouter progressivement les ressources physiques et les types d'événements.
 
-EvenementSalle (0..*) ── (0..1) Reservation : Une salle peut être réservée plusieurs fois sur des créneaux différents.
+Événement/Salle (0..) ── (0..) Tarif : Offre une flexibilité tarifaire totale ; une salle peut changer de prix selon la saison et un même tarif peut s'appliquer à plusieurs catégories de salles.
 
-Reservation (1..) ── (0..) Materielsprestations : Conformément au cahier des charges, une réservation peut inclure plusieurs matériels et prestations optionnelles.
+Tarif (0..) ── (0..) Prestations : Les services optionnels (matériel, traiteur) possèdent leurs propres grilles tarifaires, permettant de dissocier le coût du service de celui de la location.
 
-État de l'Implémentation Python
+Prestation (0..) ── (1..) Réservation : Une réservation doit obligatoirement inclure au moins une prestation (la salle) pour être valide. Une prestation peut être sollicitée dans une infinité de réservations.
 
-Note Importante : Limitations Techniques
 
-Bien que l'IHM affiche les boutons d'actions métiers (ex: calculerCout, confirmerPaiement), les méthodes ne sont pas fonctionnelles dans cette version du prototype.
-
-Pourquoi ce choix ?
-Initialement, nous avions rédigé l'intégralité de la logique métier en Python dans l'éditeur BESSER. Cependant, lors du passage à la génération et au déploiement via Docker, nous avons rencontré des obstacles techniques majeurs :
-
-Instabilité de la Génération : L'outil BESSER (en version preview) a généré des erreurs d'indentation et des conflits de bibliothèques lors de l'intégration des scripts Python personnalisés dans le backend.
-
-Priorité à la Stabilité : Pour éviter que le conteneur Docker ne crash au démarrage et pour garantir que l'IHM reste accessible pour la démonstration du CRUD (Création, Lecture, Mise à jour des objets), nous avons dû neutraliser les méthodes avec des blocs pass.
-
-Complexité du Pattern State : L'implémentation du pattern State pour la classe Réservation via l'interface BESSER s'est avérée incompatible avec le moteur de transition généré automatiquement.
-
-Logique prévue (Algorithmie)
-
-Le code que nous souhaitions intégrer est documenté dans le dossier code/ sous forme de commentaires. Il prévoyait :
-
-Calcul de tarif : coutTotal = duree * prix_saisonnier.
-
-Vérification OCL : Contrôle du nombre de participants par rapport à la capacité maximale de la salle.
-
-Gestion des stocks : Décrémentation du stock de vidéoprojecteurs lors d'une réservation.
