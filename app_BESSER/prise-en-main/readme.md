@@ -20,4 +20,4 @@ Voici l'ensemble des dossiers nécessaires pour générer l'app web BESSER :
 
 -> Pb techniques
 
-   .la methode consulter stats ne fonctionne pas, elle ne lie pas les données de réservation
+   .la logique métier de la méthode consulterStats est fonctionnelle mais l'affichage des données reste vide car l'interface actuelle du prototype ne permet pas de créer manuellement les associations (liens) entre les instances de Gestionnaire et de Reservation
