@@ -3,13 +3,11 @@ Accèss Rapide :
 
 
 -diagramme de classe : 
-
 [diagramme de classe](./diagramme-de-classe/)
 
 
 
 -prise en main : 
-
 [prise en main](./prise-en-main/)
 
 
