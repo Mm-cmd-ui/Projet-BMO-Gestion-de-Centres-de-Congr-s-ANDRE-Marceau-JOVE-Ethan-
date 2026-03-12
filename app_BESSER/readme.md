@@ -2,6 +2,21 @@
 Accèss Rapide : 
 
 
+-diagramme de classe : 
+
+[diagramme de classe](./diagramme-de-classe/)
+
+
+
+-prise en main : 
+
+[prise en main](./prise-en-main/)
+
+
+
+
+
+
 ->Limites Techniques & État du Prototype
 
 -Actuellement, l'application déployée via Docker présente certaines limites liées à la jeunesse de l'outil BESSER et à des contraintes techniques de génération :
