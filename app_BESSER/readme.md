@@ -1,11 +1,6 @@
 
-Voici l'ensemble des dossiers nécessaires pour générer l'app web BESSER : 
+Accèss Rapide : 
 
--backend
-
--frontend
-
--docker-compose
 
 ->Limites Techniques & État du Prototype
 
