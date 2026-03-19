@@ -37,7 +37,7 @@ Accèss Rapide :
 docker-compose up
 
 .Mettre a jour docker suite à modifications : 
-docker compose down -v
+docker-compose down -v
 docker compose up --build
 
 .Accédez à l'interface web sur : http://localhost:3000
