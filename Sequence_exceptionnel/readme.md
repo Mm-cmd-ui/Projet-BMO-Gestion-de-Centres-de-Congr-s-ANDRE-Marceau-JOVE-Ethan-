@@ -88,8 +88,6 @@ Conformément au diagramme d'états de la classe Reservation :
 
 Réaction du système :
 
-Le garde-fou temporel expire.
-
 La réservation passe automatiquement à l'état Annulée.
 
 Le créneau est immédiatement libéré dans la table Disponibilites pour d'autres utilisateurs.
